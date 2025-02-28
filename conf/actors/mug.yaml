@@ -1,0 +1,11 @@
+type: nonconvex_mesh
+name: mug
+urdf_file: "mug/mug.urdf"
+flip_visual: false
+collision: True
+gravity: False
+size: [0.6, 0.8, 0.108]
+init_pos: [1, 1, 0.054]
+fixed: True
+handle: None
+color: [1.0, 1.0, 1.0]

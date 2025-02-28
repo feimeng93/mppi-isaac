@@ -1,0 +1,9 @@
+type: nonconvex_mesh
+name: table3
+urdf_file: "table3/table.urdf"
+flip_visual: true
+collision: True
+gravity: False
+init_pos: [0.0, 0.0, 0.0]
+fixed: True
+handle: None

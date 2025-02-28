@@ -23,7 +23,7 @@ class Objective(object):
     def compute_cost(self, sim):
         r_pos = sim.get_actor_link_by_name("gen3", "end_effector_link")
         goal_pos = sim.get_actor_position_by_name("goal")
-        table_forces = sim.get_actor_contact_forces_by_name("table", "box")
+        table_forces = sim.get_actor_contact_forces_by_name("table3", "nonconvex_mesh")
 
 
         robot_to_goal = r_pos[:, 0:3] - goal_pos[:, 0:3]

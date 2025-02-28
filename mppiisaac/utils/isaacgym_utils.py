@@ -50,15 +50,14 @@ def load_asset(gym, sim, actor_cfg):
             radius=actor_cfg.size[0] + noise[0],
             options=asset_options,
         )
-    elif actor_cfg.type == "polynomial":
-        if actor_cfg.noise_sigma_size is not None:
-            noise_sigma = np.array(actor_cfg.noise_sigma_size)
-        else:
-            noise_sigma = np.zeros((1,))
-        noise = np.random.normal(loc=0, scale=noise_sigma, size=1)
-        actor_asset = gym.create_sphere(
+    elif actor_cfg.type == "nonconvex_mesh":
+        asset_file = "urdf/" + actor_cfg.urdf_file
+        asset_options.flip_visual_attachments = actor_cfg.flip_visual
+        asset_options.disable_gravity = not actor_cfg.gravity
+        actor_asset = gym.load_asset(
             sim=sim,
-            radius=actor_cfg.size[0] + noise[0],
+            rootpath=asset_root_path,
+            filename=asset_file,
             options=asset_options,
         )
     else:

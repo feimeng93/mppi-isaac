@@ -25,8 +25,8 @@ def run_panda_robot(cfg: ExampleConfig):
     sim._gym.viewer_camera_look_at(
         sim.viewer,
         None,
-        gymapi.Vec3(1.0, 6.5, 4),
-        gymapi.Vec3(1.0, 0, 0),  # CAMERA LOCATION, CAMERA POINT OF INTEREST
+        gymapi.Vec3(2, -2, 2.2),
+        gymapi.Vec3(0.0, 0, 0),  # CAMERA LOCATION, CAMERA POINT OF INTEREST
     )
 
     t = time.time()

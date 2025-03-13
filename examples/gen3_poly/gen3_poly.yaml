@@ -3,7 +3,9 @@ defaults:
   - isaacgym: normal
 
 n_steps: 10000
-actors: ['gen3', 'goal', 'table3', 'heart1', 'heart2']
+actors: ['gen3', 'goal', 'table3']
+obs_actors: ['heart1', 'heart2']
+
 initial_actor_positions: [[0.0, 0.0, 0.625]]
 nx: 14
 

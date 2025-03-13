@@ -6,6 +6,7 @@ from yaml import SafeLoader
 import numpy as np
 import pathlib
 import os
+import random
 from mppiisaac.planner.isaacgym_wrapper import ActorWrapper
 
 FILE_PATH = pathlib.Path(__file__).parent.resolve()
@@ -86,3 +87,27 @@ def load_actor_cfgs(actors: List[str]) -> List[ActorWrapper]:
             actor_cfgs.append(ActorWrapper(**yaml.load(f, Loader=SafeLoader)))
     
     return actor_cfgs
+
+def load_obs_actor_cfgs_envs(actors: List[str], num_envs:int) -> List[ActorWrapper]:
+    # actors = ["heart1", "heart2", "heart3", "heart4"]
+    # num_envs = 500
+    # return [["heart1_1", "heart2_1"],["heart1_3", "heart1_4"], ..., 500] in random order
+    actor_cfgs = []
+    for actor_name in actors:
+        actor_cata = []
+        for i in range(num_envs):
+            with open(
+                f"{os.path.dirname(mppiisaac.__file__)}/../conf/actors/{actor_name}/{actor_name}_{i}.yaml"
+            ) as f:
+                actor_cata.append(ActorWrapper(**yaml.load(f, Loader=SafeLoader)))
+        actor_cfgs.append(actor_cata)
+    
+    random_actor_cfgs = []
+    for i in range(num_envs):
+        cate_ele = []
+        for j in range(len(actors)):
+            cate_ele.append(random.choice(actor_cfgs[j]))
+        random_actor_cfgs.append(cate_ele)
+     
+        
+    return random_actor_cfgs

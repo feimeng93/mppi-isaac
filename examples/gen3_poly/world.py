@@ -13,6 +13,7 @@ def run_panda_robot(cfg: ExampleConfig):
     sim = IsaacGymWrapper(
         cfg.isaacgym,
         actors=cfg.actors,
+        obs_actors=cfg.obs_actors,
         init_positions=cfg.initial_actor_positions,
         num_envs=1,
         viewer=True,

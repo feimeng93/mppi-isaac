@@ -29,8 +29,9 @@ class MPPIisaacPlanner(object):
         self.sim = IsaacGymWrapper(
             cfg.isaacgym,
             actors=cfg.actors,
+            obs_actors=cfg.obs_actors,
             init_positions=cfg.initial_actor_positions,
-            num_envs=cfg.mppi.num_samples,
+            num_envs=cfg.mppi.num_samples, 
             device=cfg.mppi.device,
             # viewer=True
         )

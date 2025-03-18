@@ -19,7 +19,7 @@ def run_panda_robot(cfg: ExampleConfig):
         viewer=True,
     )
 
-    planner = zerorpc.Client()
+    planner = zerorpc.Client(heartbeat=30, timeout=60)
     planner.connect("tcp://127.0.0.1:4242")
     print("Mppi server found!")
 

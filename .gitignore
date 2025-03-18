@@ -7,3 +7,5 @@ thirdparty/**/*
 
 **/outputs/**
 .venv
+assets/urdf/heart1
+assets/urdf/heart2

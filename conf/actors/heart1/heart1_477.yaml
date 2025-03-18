@@ -1,0 +1,3 @@
+{type: nonconvex_mesh, name: heart1_477, urdf_file: "heart1/uncertain/heart1_477.urdf",
+  flip_visual: false, collision: true, gravity: false, init_pos: [0.0, 0.3, 0.85],
+  fixed: true, handle: None, color: [255, 0, 0]}

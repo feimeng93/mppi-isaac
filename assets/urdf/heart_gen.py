@@ -3,7 +3,8 @@ import pyvista as pv
 import os
 
 
-obs = 'heart1'
+obs = 'heart2'
+
 def generate_urdf_files(template_path: str, output_dir: str, num_files: int):
     """
     Generate URDF files with modified filenames.
@@ -55,11 +56,10 @@ def generate_stl_files(output_dir: str, num_files: int):
         # Save the mesh as an STL file
         stl_filename = os.path.join(output_dir, f'{obs}_{i}.stl')
         heart_mesh.save(stl_filename)
-
 # Example usage
 template_path = f'./{obs}/heart.urdf' # heart1 / heart2
 output_dir = f'./{obs}/uncertain'
-num_files = 10
+num_files = 500
 
 generate_urdf_files(template_path, output_dir, num_files)
 generate_stl_files(output_dir, num_files)

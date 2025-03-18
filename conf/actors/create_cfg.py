@@ -41,4 +41,4 @@ def generate_actor_yaml_files(actor_name: str, num_files: int, output_dir: str, 
             yaml.dump(actor_cfg, yaml_file, default_flow_style=True, sort_keys=False)
 
 # Example usage
-generate_actor_yaml_files('heart2', 10, './heart2', [0.0, 0.3, 1.45])
+generate_actor_yaml_files('heart1', 500, './heart1', [0.0, 0.3, 0.85])

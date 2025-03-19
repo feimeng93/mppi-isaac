@@ -3,7 +3,7 @@ defaults:
 
 mppi_mode: "halton-spline"  # halton-spline, simple
 sampling_method: "halton"   # halton, random
-num_samples: 100 # Number of environments to run in parallel
+num_samples: 500 # Number of environments to run in parallel
 horizon: 12                 # At least 12 for Halton Sampling
 device: "cuda:0"
 u_min: [-80]

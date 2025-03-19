@@ -1,0 +1,10 @@
+type: nonconvex_mesh
+name: heart2
+urdf_file: "heart2/heart.urdf"
+flip_visual: false
+collision: True
+gravity: False
+init_pos: [0.0, 0.3, 1.65]
+fixed: True
+handle: None
+color: [255, 0, 0]

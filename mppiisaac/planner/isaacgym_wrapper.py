@@ -94,7 +94,10 @@ class IsaacGymWrapper:
     ):
         self._gym = gymapi.acquire_gym()
         self.env_cfg = load_actor_cfgs(actors)
-        self.obs_env_cfg = load_obs_actor_cfgs_envs(obs_actors, num_envs)
+        if len(obs_actors) != 0:
+            self.obs_env_cfg = load_obs_actor_cfgs_envs(obs_actors, num_envs)
+        else:
+            self.obs_env_cfg = []
         self.device = device
 
         # TODO: make sure there are no actors with duplicate names
@@ -166,12 +169,13 @@ class IsaacGymWrapper:
             env_actor_assets.append(asset)
         
         obs_env_actor_assets = []
-        for obs_actor_cfg in self.obs_env_cfg:
-            temp_list = []
-            for i in range(len(obs_actor_cfg)):
-                obs_asset = load_asset(self._gym, self._sim, obs_actor_cfg[i])
-                temp_list.append(obs_asset)
-            obs_env_actor_assets.append(temp_list)
+        if len(self.obs_env_cfg) != 0:
+            for obs_actor_cfg in self.obs_env_cfg:
+                temp_list = []
+                for i in range(len(obs_actor_cfg)):
+                    obs_asset = load_asset(self._gym, self._sim, obs_actor_cfg[i])
+                    temp_list.append(obs_asset)
+                obs_env_actor_assets.append(temp_list)
             
 
         # Create envs and fill with assets
@@ -189,13 +193,14 @@ class IsaacGymWrapper:
                     env, env_idx, actor_asset, actor_cfg
                 )
 
-            paired_elements = [obs_env_actor_assets[env_idx], self.obs_env_cfg[env_idx]]
-            obs_actor_asset, obs_actor_cfg = paired_elements[0], paired_elements[1] 
-            # for obs_actor_asset, obs_actor_cfg in list(zip(obs_env_actor_assets[env_idx], self.obs_env_cfg[env_idx])):
-            for i in range(len(obs_actor_asset)):
-                obs_actor_cfg[i].handle = self._create_actor(
-                        env, env_idx, obs_actor_asset[i], obs_actor_cfg[i]
-                    )
+            if len(self.obs_env_cfg) != 0:
+                paired_elements = [obs_env_actor_assets[env_idx], self.obs_env_cfg[env_idx]]
+                obs_actor_asset, obs_actor_cfg = paired_elements[0], paired_elements[1] 
+                # for obs_actor_asset, obs_actor_cfg in list(zip(obs_env_actor_assets[env_idx], self.obs_env_cfg[env_idx])):
+                for i in range(len(obs_actor_asset)):
+                    obs_actor_cfg[i].handle = self._create_actor(
+                            env, env_idx, obs_actor_asset[i], obs_actor_cfg[i]
+                        )
             self.envs.append(env)
 
         self._visualize_link_present = any([a.visualize_link for a in self.env_cfg])

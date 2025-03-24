@@ -14,6 +14,7 @@ class Objective(object):
         self.w_coll = 0.0 # 0.01 
 
     def compute_cost(self, sim: IsaacGymWrapper):
+        
         dof_state = sim.dof_state
         pos = torch.cat((dof_state[:, 0].unsqueeze(1), dof_state[:, 2].unsqueeze(1)), 1)
         obs_positions = sim.obstacle_positions
